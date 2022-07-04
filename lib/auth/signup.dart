@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:medhya/auth/signin.dart';
-
 import 'package:medhya/services/authentication.dart';
 
 import '../const.dart';
@@ -16,58 +14,64 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void signupUser() async {
-    FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
-        email: _emailController.text,
-        password: _passwordController.text,
-        context: context);
-  }
-
   Widget _buildEmailRow() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "Email or phone",
-        hintStyle: TextStyle(color: Colors.black45),
-        prefixIcon: Icon(Icons.email_outlined),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            width: 0,
-            style: BorderStyle.none,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.05,
+      child: TextField(
+        decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          labelText: "Email or phone",
+          hintStyle: TextStyle(color: Colors.black45),
+          prefixIcon: Icon(
+            Icons.email_outlined,
+            size: MediaQuery.of(context).size.height * 0.03,
           ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              width: 0,
+              style: BorderStyle.none,
+            ),
+          ),
+          fillColor: Colors.black12,
+          filled: true,
         ),
-        fillColor: Colors.black12,
-        filled: true,
-        isDense: true,
-        contentPadding: EdgeInsets.symmetric(vertical: 8),
+        style: TextStyle(fontSize: MediaQuery.of(context).size.height / 50),
+        controller: _emailController,
       ),
-      style: TextStyle(fontSize: MediaQuery.of(context).size.height / 60),
-      controller: _emailController,
     );
   }
 
   Widget _buildPasswordRow() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "password",
-        hintStyle: TextStyle(color: Colors.black45),
-        prefixIcon: Icon(Icons.lock_open),
-        suffixIcon: Icon(Icons.remove_red_eye),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(
-            width: 0,
-            style: BorderStyle.none,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.05,
+      child: TextField(
+        decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          labelText: "password",
+          hintStyle: TextStyle(color: Colors.black45),
+          prefixIcon: Icon(
+            Icons.lock_open,
+            size: MediaQuery.of(context).size.height * 0.03,
           ),
+          suffixIcon: Icon(
+            Icons.remove_red_eye,
+            size: MediaQuery.of(context).size.height * 0.03,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              width: 0,
+              style: BorderStyle.none,
+            ),
+          ),
+          fillColor: Colors.black12,
+          filled: true,
         ),
-        fillColor: Colors.black12,
-        filled: true,
-        isDense: true,
-        contentPadding: EdgeInsets.symmetric(vertical: 8),
+        style: TextStyle(fontSize: MediaQuery.of(context).size.height / 50),
+        controller: _passwordController,
+        obscureText: true,
       ),
-      style: TextStyle(fontSize: MediaQuery.of(context).size.height / 60),
-      controller: _passwordController,
-      obscureText: true,
     );
   }
 
@@ -104,7 +108,8 @@ class _SignUpState extends State<SignUp> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            onPressed: signupUser,
+            onPressed: () => authController.signUpWithEmail(
+                _emailController.text, _passwordController.text),
             child: Text(
               "Sign Up",
               style: TextStyle(
@@ -147,7 +152,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           padding: EdgeInsets.all(10),
-          height: MediaQuery.of(context).size.height * 0.5,
+          height: MediaQuery.of(context).size.height * 0.50,
           width: MediaQuery.of(context).size.width * 0.8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -175,20 +180,23 @@ class _SignUpState extends State<SignUp> {
               ),
               _buildEmailRow(),
               SizedBox(
-                height: 10,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               _buildPasswordRow(),
               SizedBox(
-                height: 10,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               _buildPasswordRow(),
-              _buildForgetPasswordButton(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
+              _buildForgetPasswordButton(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
               _buildLoginButton(),
               SizedBox(
-                height: 5,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               _buildSignUpBtn(),
             ],

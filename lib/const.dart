@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medhya/services/authentication.dart';
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
@@ -21,3 +23,6 @@ void showSnackBar(BuildContext context, String str) {
     ),
   );
 }
+
+var firebaseAuth = FirebaseAuth.instance;
+var authController = FirebaseAuthMethods.instance;
