@@ -244,25 +244,25 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          clipBehavior: Clip.none,
-          children: <Widget>[
-            Image.asset("assets/images/#98E1F2.png"),
-            SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.35),
-                    child: _buildContainer(),
-                  ),
-                ],
-              ),
+    return Scaffold(
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          Image.asset(
+            "assets/images/#98E1F2.png",
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.35),
+                  child: _buildContainer(),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
