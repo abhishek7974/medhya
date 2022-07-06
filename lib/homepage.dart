@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:medhya/const.dart';
 
 class HomePage extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser;
+  final user = firebaseAuth.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
             height: 40,
           ),
           ElevatedButton(
-            onPressed: () => FirebaseAuth.instance.signOut(),
+            onPressed: () => firebaseAuth.signOut(),
             child: const Text("SIGN OUT"),
           )
         ]),
